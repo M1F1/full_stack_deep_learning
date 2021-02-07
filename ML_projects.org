@@ -1,0 +1,136 @@
+#+TITLE: Full_stack_deep_learning
+
+* Setting up machine learning projects
+** proctera technologies -> 85% projects fails
+*** poorly scoped, technology infeasible
+*** never make leap to production
+*** unclear success criteria
+*** poor team management
+
+** life cycle of ml projects
+*** planning and project setup
+*** data collection and labelling
+*** training and debuging
+*** deploying and testing
+
+** cross-project infrastructure
+*** team and hiring
+*** infra and tooling
+
+** what else do we need to know?
+*** understand state of the art in your domain
+*** understand what is possible to do?
+*** know to try next
+
+** Prioritizing projects
+*** The economics in AI
+**** look for projects where cheap prediction will have a huge buisness impact
+*** Software 2.0
+**** look for complicated rule based software where we can learn the rules instead of programming them
+
+** Acessing feasibility of ML projects
+*** Cost drivers
+**** Data availibility
+***** how hard is to require data?
+***** how expensive is data labelling?
+***** how much data will be needed?
+**** Accuracy requirement
+***** how costly are wrong predictions?
+***** problem difficulty?
+**** Problem difficulty
+***** good published work on similar problems?
+***** compute needed for training?
+***** compute needed for deployment?
+*** What type of problems are hard?
+**** output is complex
+**** reliability is required
+**** generalization is required
+
+** ML project Archetypes
+*** improve an existing process
+**** examples:
+***** improve code completion in IDE
+***** build a customized recommendation system
+***** build a better game AI
+
+**** key questions:
+***** do your models truly improve performance
+***** does performance improvements generate buisness value?
+***** do performance improvements lead to data flywheel?
+
+*** augment a manual process
+**** examples:
+***** turn sketches into slides
+***** email auto-completion
+***** help radiologist to do their job faster
+
+**** key questions:
+***** how good do the system need to be to be usefull?
+***** how can you collect enought data to make that good?
+
+*** automate a manual process
+**** examples:
+***** full self-driving
+***** automated customer support
+***** automated website design
+**** key questions:
+***** what is an acceptable failure rate for the system?
+***** how you can guarantee that it won't exceed that failure rate?
+***** how inexpensively you can label data from the system?
+
+** Data flywheel
+*** more users
+**** do you have data loop? Automatically collect data (and ideally labels) from your users?
+*** more data
+**** ml practicioner job to do better models with more data
+*** better model
+**** do better predictions makes model better (genereting new users) ?
+
+** Metrics
+*** key points for choosing a metric
+**** The real world is messy , you usually care about a lots of metrics
+**** however, ml systems work best for optimizing single number
+**** as a result you need to pick a formula for combining metrics
+**** this formula can and will change
+*** strategy for combining multi metrices
+**** simple average/ weighted average
+**** threshold n-1 metrics, evaluate the nth
+***** choosing which metrics to threshold
+****** domain judgement (e.g which metric you can engineer around?)
+****** which metrics are least sensitive to model choice?
+****** which metrics are closest to desirable values?
+***** choosing threshold values
+****** domain judgment (e.g what is an acceptable tolerance downstream? What performance is achievable?)
+****** how well does the baseline model do?
+****** how important is this metric right now?
+*** framework
+**** enumerate requirements
+**** evaluate current performance
+**** compare current performance to requirements
+**** revisit metric as your numbers improve
+
+** Baselines
+*** keypoints of choosing baselines
+**** baselines give you a lower bound on expected model performance
+**** the thighter the lower bound, the more useful the baseline (e.g published results, carefully tuned pipelines, human baselines are better)
+*** where to look for baselines
+**** externall baselines
+***** business / engineering requirements
+***** published results (make sure comparison is fair)
+**** internall baselines
+***** scripted baseline (rules-based baseline)
+***** simple ml baseline (e.g bag-of-words, linear regression)
+***** human performance
+****** how to create good human baselines
+******* graph
+******** quality of baseline ->
+******** easy of data collection <-
+********* random people
+********* ensamble of random people
+********* domain experts
+********* deep domain experts
+********* ensable of group of experts
+******* rules
+******** highest quality that allows more data to be labeled easily
+******** more specialized domains need more skilled labelers
+******** find cases where model performs worse and concentrate data collection there
